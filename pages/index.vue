@@ -5,6 +5,7 @@ import { characterListResponse } from "~/types/characters";
 import { CustomResponse } from "~/types/response";
 
 const route = useRoute();
+const characterStore = useCharacterStore();
 
 const data = ref({} as CustomResponse<characterListResponse>);
 const message = ref(null as string | null);
@@ -14,14 +15,7 @@ const offset = computed(() => {
 });
 
 const handleSearch = async () => {
-  console.log("search");
-  try {
-    data.value = (await CharacterService.fetchCharacterList(
-      Number(route.query.offset)
-    )) as CustomResponse<characterListResponse>;
-  } catch (error) {
-    message.value = error as string;
-  }
+  characterStore.fetchCharacterList(Number(route.query.offset));
 };
 
 handleSearch();
@@ -29,10 +23,6 @@ handleSearch();
 watch(offset, async () => {
   handleSearch();
 });
-
-// onMounted(() => {
-//   handleSearch();
-// });
 </script>
 <template>
   <div>
@@ -42,17 +32,22 @@ watch(offset, async () => {
     <template v-else>
       <h1 class="text-3xl font-medium mb-4">Characters</h1>
       <ClientOnly>
-        <div v-if="data.status === 'Ok'" class="grid grid-cols-4 gap-4">
+        <div
+          v-if="characterStore.characterList.length > 0"
+          class="grid grid-cols-4 gap-4"
+        >
           <CharacterCard
-            v-for="character in data.data.results"
+            v-for="character in characterStore.characterList"
             :key="character.id"
             :character="character"
           />
         </div>
-        <div v-if="data.status === 'Ok'">
-          {{ data.data.offset + data.data.limit }}
+        <div>
+          {{ characterStore.offset + characterStore.limit }}
           <NuxtLink
-            :to="{ query: { offset: data.data.offset + data.data.limit } }"
+            :to="{
+              query: { offset: characterStore.offset + characterStore.limit },
+            }"
             >See more</NuxtLink
           >
         </div>
