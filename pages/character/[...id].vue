@@ -21,6 +21,20 @@ handleSearchComics();
 const character = computed(() => {
   return characterStore.characterById(Number(id.value));
 });
+
+useHead({
+  title: "Character Detail",
+  meta: [
+    {
+      hid: "description",
+      name: "description",
+      content: "Characters from Marvel API",
+    },
+  ],
+  htmlAttrs: {
+    lang: "en",
+  },
+});
 </script>
 <template>
   <div>
@@ -34,7 +48,9 @@ const character = computed(() => {
             )
           "
           :alt="character?.name"
-          class="aspect-square w-[200px] rounded-md"
+          class="rounded-md"
+          sizes="sm:100vw md:50vw lg:400px"
+          loading="lazy"
           format="webp"
         />
         <div>
@@ -45,13 +61,18 @@ const character = computed(() => {
         </div>
       </div>
       <h2 class="text-3xl font-medium my-4">Comics</h2>
-      <div class="grid grid-cols-4 gap-4" v-if="!loadingComics">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        v-if="!loadingComics"
+      >
         <NuxtImg
           v-for="comic in characterStore.selectedCharacter.comics"
           :src="comic?.thumbnail.path.concat('.', comic?.thumbnail.extension)"
           :alt="comic?.title"
           format="webp"
-          class="aspect-square rounded-md"
+          loading="lazy"
+          class="rounded-md object-fill aspect-[9-16] w-full"
+          sizes="sm:100vw md:50vw lg:400px"
         />
       </div>
       <div v-else class="grid grid-cols-4 gap-4">

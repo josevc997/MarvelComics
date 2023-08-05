@@ -23,6 +23,19 @@ handleSearch();
 watch(offset, async () => {
   handleSearch();
 });
+useHead({
+  title: "Character List",
+  meta: [
+    {
+      hid: "description",
+      name: "description",
+      content: "Characters from Marvel API",
+    },
+  ],
+  htmlAttrs: {
+    lang: "en",
+  },
+});
 </script>
 <template>
   <div>

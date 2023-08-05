@@ -6,7 +6,7 @@ defineProps<{
 </script>
 <template>
   <NuxtLink
-    class="grid place-content-between border rounded-md border-slate-300 p-2 gap-2 hover:shadow-md transition hover:scale-105 duration-300 ease-in-out cursor-pointer"
+    class="grid col-span-4 sm:col-span-2 md:col-span-1 place-content-between border rounded-md border-slate-300 p-2 gap-2 hover:shadow-md transition hover:scale-105 duration-300 ease-in-out cursor-pointer"
     :to="{ name: 'character-id', params: { id: character.id } }"
   >
     <h2 class="text-base font-medium">{{ character.name }}</h2>
@@ -15,6 +15,8 @@ defineProps<{
       :alt="character.name"
       format="webp"
       class="w-full aspect-[1] object-fill rounded-md"
+      sizes="xs:100vw sm:50vw md:223px"
+      loading="lazy"
     />
   </NuxtLink>
 </template>
