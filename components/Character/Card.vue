@@ -15,8 +15,8 @@ defineProps<{
       :alt="character.name"
       format="webp"
       class="w-full aspect-[1] object-fill rounded-md"
-      sizes="xs:100vw sm:50vw md:223px"
       loading="lazy"
     />
+    <!-- sizes="xs:100vw sm:50vw md:223px" -->
   </NuxtLink>
 </template>

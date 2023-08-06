@@ -48,11 +48,11 @@ useHead({
             )
           "
           :alt="character?.name"
-          class="rounded-md"
-          sizes="sm:100vw md:50vw lg:400px"
+          class="rounded-md w-[400px]"
           loading="lazy"
           format="webp"
         />
+        <!-- sizes="sm:100vw md:50vw lg:400px" -->
         <div>
           <h1 class="text-3xl font-medium">
             {{ character.name }}
@@ -72,8 +72,8 @@ useHead({
           format="webp"
           loading="lazy"
           class="rounded-md object-fill aspect-[9-16] w-full"
-          sizes="sm:100vw md:50vw lg:400px"
         />
+        <!-- sizes="sm:100vw md:50vw lg:400px" -->
       </div>
       <div v-else class="grid grid-cols-4 gap-4">
         <div
