@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
-import { CustomResponse } from "~/types/response";
+import { CustomResponse, CustomData } from "~/types/response";
 import { Character, characterListResponse } from "~/types/characters";
 import { Comic, ComicListResponse } from "~/types/comics";
+import { Serie, Storie, Event } from "~/types/series";
 import CharacterService from "~/services/Character.service";
 
 export const useCharacterStore = defineStore("character", {
@@ -12,6 +13,9 @@ export const useCharacterStore = defineStore("character", {
     selectedCharacter: {
       character: {} as Character,
       comics: [] as Comic[],
+      series: [] as Serie[],
+      stories: [] as Storie[],
+      events: [] as Event[],
     },
   }),
   getters: {
@@ -28,10 +32,10 @@ export const useCharacterStore = defineStore("character", {
   },
   actions: {
     async fetchCharacterList(offset: number) {
-      const response: CustomResponse<characterListResponse> =
+      const response: CustomResponse<Character> =
         (await CharacterService.fetchCharacterList(
           offset
-        )) as CustomResponse<characterListResponse>;
+        )) as CustomResponse<Character>;
       this.data = response.data;
     },
 
@@ -41,10 +45,10 @@ export const useCharacterStore = defineStore("character", {
       );
       if (!character) {
         try {
-          const response: CustomResponse<characterListResponse> =
+          const response: CustomResponse<Character> =
             (await CharacterService.fetchCharacterById(
               id
-            )) as CustomResponse<characterListResponse>;
+            )) as CustomResponse<Character>;
           this.data = response.data;
           this.selectedCharacter.character = this.data.results[0];
         } catch (error) {
@@ -56,11 +60,35 @@ export const useCharacterStore = defineStore("character", {
     },
 
     async fetchComicsByCharacterId(id: number) {
-      const response: CustomResponse<ComicListResponse> =
+      const response: CustomResponse<Comic> =
         (await CharacterService.fetchComicsByCharacterId(
           id
-        )) as CustomResponse<ComicListResponse>;
+        )) as CustomResponse<Comic>;
       this.selectedCharacter.comics = response.data.results;
+    },
+
+    async fetchSeriesByCharacterId(id: number) {
+      const response: CustomResponse<Serie> =
+        (await CharacterService.fetchSeriesByCharacterId(
+          id
+        )) as CustomResponse<Serie>;
+      this.selectedCharacter.series = response.data.results;
+    },
+
+    async fetchStoriesByCharacterId(id: number) {
+      const response: CustomResponse<Storie> =
+        (await CharacterService.fetchStoriesByCharacterId(
+          id
+        )) as CustomResponse<Storie>;
+      this.selectedCharacter.stories = response.data.results;
+    },
+
+    async fetchEventsByCharacterId(id: number) {
+      const response: CustomResponse<Event> =
+        (await CharacterService.fetchEventsByCharacterId(
+          id
+        )) as CustomResponse<Event>;
+      this.selectedCharacter.events = response.data.results;
     },
   },
 });

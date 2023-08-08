@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ComicList from "components/Character/ComicList.vue";
+
 const route = useRoute();
 const characterStore = useCharacterStore();
 
@@ -6,21 +8,49 @@ const id = computed(() => {
   return route.params.id;
 });
 
-characterStore.fetchCharacterById(Number(id.value));
-
-const loadingComics = ref(false);
-
-const handleSearchComics = async () => {
-  loadingComics.value = true;
-  await characterStore.fetchComicsByCharacterId(Number(id.value));
-  loadingComics.value = false;
-};
-
-handleSearchComics();
-
 const character = computed(() => {
   return characterStore.characterById(Number(id.value));
 });
+
+const loading = ref(false);
+const loadingComics = ref(false);
+const loadingStories = ref(false);
+const loadingEvents = ref(false);
+const loadingSeries = ref(false);
+
+const handleSearchSeries = async () => {
+  await characterStore.fetchSeriesByCharacterId(Number(id.value));
+};
+
+const handleSearchEvents = async () => {
+  await characterStore.fetchEventsByCharacterId(Number(id.value));
+};
+
+const handleSearchComics = async () => {
+  await characterStore.fetchComicsByCharacterId(Number(id.value));
+};
+
+const handleSearchStories = async () => {
+  await characterStore.fetchStoriesByCharacterId(Number(id.value));
+};
+
+const handleSearch = async () => {
+  loading.value = true;
+  loadingSeries.value = true;
+  loadingEvents.value = true;
+  loadingComics.value = true;
+  loadingStories.value = true;
+  await characterStore.fetchCharacterById(Number(id.value));
+  loading.value = false;
+  handleSearchComics();
+  loadingComics.value = false;
+  handleSearchStories();
+  loadingStories.value = false;
+  handleSearchEvents();
+  loadingEvents.value = false;
+  handleSearchSeries();
+  loadingSeries.value = false;
+};
 
 useHead({
   title: "Character Detail",
@@ -35,52 +65,39 @@ useHead({
     lang: "en",
   },
 });
+
+handleSearch();
 </script>
 <template>
   <div>
     <template v-if="character">
-      <div class="flex gap-4">
-        <NuxtImg
-          :src="
-            character?.thumbnail.path.concat(
-              '.',
-              character?.thumbnail.extension
-            )
-          "
-          :alt="character?.name"
-          class="rounded-md w-[400px]"
-          loading="lazy"
-          format="webp"
-        />
+      <div class="grid grid-cols-12 w-full gap-4">
+        <div class="col-span-5 md:col-span-4">
+          <NuxtImg
+            :src="
+              character?.thumbnail.path.concat(
+                '.',
+                character?.thumbnail.extension
+              )
+            "
+            :alt="character?.name"
+            class="rounded-md aspect-square w-full"
+            loading="lazy"
+            format="webp"
+          />
+        </div>
         <!-- sizes="sm:100vw md:50vw lg:400px" -->
-        <div>
+        <div class="col-span-7 md:col-span-8">
           <h1 class="text-3xl font-medium">
             {{ character.name }}
           </h1>
           <p>{{ character.description || "Description not found" }}</p>
         </div>
       </div>
-      <h2 class="text-3xl font-medium my-4">Comics</h2>
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-        v-if="!loadingComics"
-      >
-        <NuxtImg
-          v-for="comic in characterStore.selectedCharacter.comics"
-          :src="comic?.thumbnail.path.concat('.', comic?.thumbnail.extension)"
-          :alt="comic?.title"
-          format="webp"
-          loading="lazy"
-          class="rounded-md object-fill aspect-[9-16] w-full"
-        />
-        <!-- sizes="sm:100vw md:50vw lg:400px" -->
-      </div>
-      <div v-else class="grid grid-cols-4 gap-4">
-        <div
-          v-for="i in 4"
-          class="aspect-square bg-slate-300 animate-pulse rounded-md"
-        ></div>
-      </div>
+      <CharacterSerieList :loading="loadingSeries" />
+      <CharacterEventList :loading="loadingEvents" />
+      <CharacterComicList :loading="loadingComics" />
+      <CharacterStoryList :loading="loadingStories" />
     </template>
     <template v-else>
       <h1>{{ characterStore.error }}</h1>
