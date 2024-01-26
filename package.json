@@ -16,7 +16,7 @@
     "@sidebase/nuxt-auth": "0.6.0-beta.2",
     "@types/node": "^18.17.1",
     "autoprefixer": "^10.4.14",
-    "nuxt": "^3.6.5",
+    "nuxt": "^3.9.3",
     "nuxt-headlessui": "^1.1.4",
     "nuxt-icon": "^0.4.2",
     "postcss": "^8.4.27",
