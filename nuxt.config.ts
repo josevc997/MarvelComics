@@ -17,6 +17,7 @@ export default defineNuxtConfig({
         "@sidebase/nuxt-auth",
         "@pinia/nuxt",
         "@nuxt/devtools",
+        "@nuxt/image",
     ],
     // Optionally change the default prefix.
     headlessui: {

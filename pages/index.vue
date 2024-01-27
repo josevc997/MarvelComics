@@ -54,18 +54,137 @@ useHead({
                         :character="character"
                     />
                 </div>
-                <div>
-                    {{ characterStore.offset + characterStore.limit }}
+                <div class="flex justify-end gap-1 mt-4">
                     <NuxtLink
+                        :to="{
+                            query: {},
+                        }"
+                    >
+                        <button
+                            class="border flex items-center justify-center hover:ring-1 hover:ring-green-600/60 border-slate-400 px-1 py-1 aspect-square rounded size-9 hover:bg-slate-200"
+                        >
+                            <Icon
+                                name="heroicons:chevron-double-left-20-solid"
+                                class="size-6"
+                            />
+                        </button>
+                    </NuxtLink>
+                    <NuxtLink
+                        v-if="
+                            0 <=
+                            characterStore.offset - characterStore.limit * 2
+                        "
+                        :to="{
+                            query: {
+                                offset:
+                                    characterStore.offset -
+                                    characterStore.limit * 2,
+                            },
+                        }"
+                    >
+                        <button
+                            class="border hover:ring-1 hover:ring-green-600/60 border-slate-400 px-1 py-1 aspect-square rounded size-9 hover:bg-slate-200"
+                        >
+                            {{
+                                characterStore.offset / characterStore.limit - 1
+                            }}
+                        </button>
+                    </NuxtLink>
+                    <NuxtLink
+                        v-if="
+                            0 <=
+                            characterStore.offset - characterStore.limit * 1
+                        "
+                        :to="{
+                            query: {
+                                offset:
+                                    characterStore.offset -
+                                    characterStore.limit * 1,
+                            },
+                        }"
+                    >
+                        <button
+                            class="border hover:ring-1 hover:ring-green-600/60 border-slate-400 px-1 py-1 aspect-square rounded size-9 hover:bg-slate-200"
+                        >
+                            {{ characterStore.offset / characterStore.limit }}
+                        </button>
+                    </NuxtLink>
+                    <button
+                        class="border ring-1 ring-green-600/60 border-slate-400 px-1 py-1 aspect-square rounded size-9 bg-slate-200"
+                    >
+                        {{ characterStore.offset / characterStore.limit + 1 }}
+                    </button>
+                    <!-- </NuxtLink> -->
+                    <NuxtLink
+                        v-if="
+                            characterStore.total >
+                            characterStore.offset + characterStore.limit * 1
+                        "
                         :to="{
                             query: {
                                 offset:
                                     characterStore.offset +
-                                    characterStore.limit,
+                                    characterStore.limit * 1,
                             },
                         }"
-                        >See more</NuxtLink
                     >
+                        <button
+                            class="border hover:ring-1 hover:ring-green-600/60 border-slate-400 px-1 py-1 aspect-square rounded size-9 hover:bg-slate-200"
+                        >
+                            {{
+                                characterStore.offset / characterStore.limit + 2
+                            }}
+                        </button>
+                    </NuxtLink>
+                    <NuxtLink
+                        v-if="
+                            characterStore.total >
+                            characterStore.offset + characterStore.limit * 2
+                        "
+                        :to="{
+                            query: {
+                                offset:
+                                    characterStore.offset +
+                                    characterStore.limit * 2,
+                            },
+                        }"
+                    >
+                        <button
+                            class="border hover:ring-1 hover:ring-green-600/60 border-slate-400 px-1 py-1 aspect-square rounded size-9 hover:bg-slate-200"
+                        >
+                            {{
+                                characterStore.offset / characterStore.limit + 3
+                            }}
+                        </button>
+                    </NuxtLink>
+                    <NuxtLink
+                        :disabled="
+                            characterStore.total <
+                            characterStore.offset + characterStore.limit
+                        "
+                        :to="{
+                            query: {
+                                offset:
+                                    Math.trunc(
+                                        characterStore.total /
+                                            characterStore.limit
+                                    ) * characterStore.limit,
+                            },
+                        }"
+                    >
+                        <button
+                            :disabled="
+                                characterStore.total <
+                                characterStore.offset + characterStore.limit
+                            "
+                            class="border disabled:ring-0 hover:ring-1 hover:ring-green-600/60 border-slate-400 px-1 py-1 aspect-square rounded size-9 hover:bg-slate-200 disabled:bg-transparent"
+                        >
+                            <Icon
+                                name="heroicons:chevron-double-right-20-solid"
+                                class="size-6"
+                            />
+                        </button>
+                    </NuxtLink>
                 </div>
             </ClientOnly>
         </template>
