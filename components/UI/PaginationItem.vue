@@ -6,6 +6,8 @@ const props = defineProps<{
     last?: boolean;
 }>();
 
+const route = useRoute();
+
 const characterStore = useCharacterStore();
 
 const disabled = computed(() => {
@@ -60,6 +62,7 @@ const pageNumber = computed(() => {
         :is="disabled ? 'div' : NuxtLink"
         :to="{
             query: {
+                ...route.query,
                 offset: offset,
             },
         }"
