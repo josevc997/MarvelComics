@@ -1,16 +1,10 @@
 <script setup lang="ts">
-import CharacterService from "~/services/Character.service";
-import type { characterListResponse } from "~/types/characters";
-import type { CustomResponse } from "~/types/response";
-
 const route = useRoute();
 const router = useRouter();
 const characterStore = useCharacterStore();
 
-const data = ref({} as CustomResponse<characterListResponse>);
 const message = ref(null as string | null);
 const searchText = ref(route.query.name ? String(route.query.name) : "");
-// const searchText = re
 const awaitingSearch = ref(false);
 
 const offset = computed(() => {
@@ -97,7 +91,7 @@ useHead({
                         :character="character"
                     />
                 </div>
-                <UIPagination />
+                <UICharacterPagination />
             </ClientOnly>
         </template>
     </div>
