@@ -82,8 +82,8 @@ useHead({
             </div>
             <ClientOnly>
                 <div
-                    v-if="characterStore.characterList.length > 0"
-                    class="grid grid-cols-4 gap-4"
+                    v-if="characterStore.characterList?.length > 0"
+                    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
                 >
                     <CharacterCard
                         v-for="character in characterStore.characterList"

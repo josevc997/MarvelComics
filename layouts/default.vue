@@ -15,7 +15,9 @@ const { locale } = useI18n();
                 </div>
             </div>
         </header> -->
-        <TheNavbar />
+        <ClientOnly>
+            <TheNavbar />
+        </ClientOnly>
         <div class="max-w-5xl mx-auto px-2 py-4">
             <slot />
         </div>

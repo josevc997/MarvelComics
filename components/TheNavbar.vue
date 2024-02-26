@@ -39,10 +39,10 @@ const navigation = [
                         <div class="flex flex-shrink-0 items-center">
                             <NuxtLink
                                 to="/"
-                                class="flex items-center gap-x-2 text-slate-800 font-bold text-xl uppercase"
+                                class="flex items-center gap-x-2 text-slate-800 font-bold text-xl"
                             >
                                 <Icon name="logos:nuxt-icon" class="h-8 w-8" />
-                                <p>Characters</p>
+                                <p>MV Dashboard</p>
                             </NuxtLink>
                         </div>
                         <div class="hidden sm:ml-6 sm:block">

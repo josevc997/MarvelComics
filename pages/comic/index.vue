@@ -62,8 +62,8 @@ watch(searchText, () => {
     </div>
     <ClientOnly>
         <div
-            v-if="comicStore.comicList.length > 0"
-            class="grid grid-cols-4 gap-4"
+            v-if="comicStore.comicList?.length > 0"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
         >
             <ComicCard
                 v-for="comic in comicStore.comicList"

@@ -1,30 +1,30 @@
 <script setup lang="ts">
-import type { Character } from "~/types/characters";
+import type { Event } from "~/types/series";
+
 defineProps<{
-    character: Character;
+    eventItem: Event;
 }>();
 </script>
 <template>
-    <NuxtLink
-        :to="`/character/${character.id}`"
+    <div
         class="relative group shadow rounded-md shadow-black/60 overflow-hidden"
     >
         <NuxtImg
             :src="
-                character?.thumbnail.path.concat(
+                eventItem?.thumbnail.path.concat(
                     '.',
-                    character?.thumbnail.extension
+                    eventItem?.thumbnail.extension
                 )
             "
-            :alt="character?.name"
+            :alt="eventItem?.title"
             format="webp"
             loading="lazy"
-            class="rounded-md object-cover aspect-[2/3] w-full z-0 group-hover:scale-105 transition-all duration-300"
+            class="rounded-md object-fill aspect-[2/3] w-full z-0 group-hover:scale-105 transition-all duration-300"
         />
         <div
             class="absolute bottom-0 left-0 bg-black/60 z-10 text-white p-2 w-full rounded-b-md font-medium text-xl md:text-base"
         >
-            {{ character.name }}
+            {{ eventItem.title }}
         </div>
-    </NuxtLink>
+    </div>
 </template>

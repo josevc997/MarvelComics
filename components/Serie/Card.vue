@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { Comic } from "~/types/comics";
+import type { Serie } from "~/types/series";
+
 defineProps<{
-    comic: Comic;
+    serie: Serie;
 }>();
 </script>
 <template>
-    <NuxtLink
-        :to="`/comic/${comic.id}`"
+    <div
         class="relative group shadow rounded-md shadow-black/60 overflow-hidden"
     >
         <NuxtImg
-            :src="comic?.thumbnail.path.concat('.', comic?.thumbnail.extension)"
-            :alt="comic?.title"
+            :src="serie?.thumbnail.path.concat('.', serie?.thumbnail.extension)"
+            :alt="serie?.title"
             format="webp"
             loading="lazy"
             class="rounded-md object-fill aspect-[2/3] w-full z-0 group-hover:scale-105 transition-all duration-300"
@@ -19,7 +19,7 @@ defineProps<{
         <div
             class="absolute bottom-0 left-0 bg-black/60 z-10 text-white p-2 w-full rounded-b-md font-medium text-xl md:text-base"
         >
-            {{ comic.title }}
+            {{ serie.title }}
         </div>
-    </NuxtLink>
+    </div>
 </template>

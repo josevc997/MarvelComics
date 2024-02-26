@@ -52,36 +52,36 @@ export const useComicStore = defineStore("comic", {
             }
         },
 
-        // async fetchComicsByCharacterId(id: number) {
-        //     const response: CustomResponse<Comic> =
-        //         (await CharacterService.fetchComicsByCharacterId(
-        //             id
-        //         )) as CustomResponse<Comic>;
-        //     this.selectedCharacter.comics = response.data.results;
-        // },
+        async fetchCharactersByComicId(id: number) {
+            const response: CustomResponse<Character> =
+                (await ComicService.fetchCharactersByComicId(
+                    id
+                )) as CustomResponse<Character>;
+            this.selectedComic.characters = response.data.results;
+        },
 
-        // async fetchSeriesByCharacterId(id: number) {
-        //     const response: CustomResponse<Serie> =
-        //         (await CharacterService.fetchSeriesByCharacterId(
-        //             id
-        //         )) as CustomResponse<Serie>;
-        //     this.selectedCharacter.series = response.data.results;
-        // },
+        async fetchSeriesByComicId(id: number) {
+            const response: CustomResponse<Serie> =
+                (await ComicService.fetchSeriesByComicId(
+                    id
+                )) as CustomResponse<Serie>;
+            this.selectedComic.series = response.data.results;
+        },
 
-        // async fetchStoriesByCharacterId(id: number) {
-        //     const response: CustomResponse<Storie> =
-        //         (await CharacterService.fetchStoriesByCharacterId(
-        //             id
-        //         )) as CustomResponse<Storie>;
-        //     this.selectedCharacter.stories = response.data.results;
-        // },
+        async fetchStoriesByComicId(id: number) {
+            const response: CustomResponse<Storie> =
+                (await ComicService.fetchStoriesByComicId(
+                    id
+                )) as CustomResponse<Storie>;
+            this.selectedComic.stories = response.data.results;
+        },
 
-        // async fetchEventsByCharacterId(id: number) {
-        //     const response: CustomResponse<Event> =
-        //         (await CharacterService.fetchEventsByCharacterId(
-        //             id
-        //         )) as CustomResponse<Event>;
-        //     this.selectedCharacter.events = response.data.results;
-        // },
+        async fetchEventsByComicId(id: number) {
+            const response: CustomResponse<Event> =
+                (await ComicService.fetchEventsByComicId(
+                    id
+                )) as CustomResponse<Event>;
+            this.selectedComic.events = response.data.results;
+        },
     },
 });

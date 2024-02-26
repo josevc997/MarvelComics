@@ -1,4 +1,11 @@
-import {ItemUrl, ItemThumbnail, Collection, ItemInfoWithRole, ItemInfoWithType, ItemInfo} from './response'
+import type {
+    ItemUrl,
+    ItemThumbnail,
+    Collection,
+    ItemInfoWithRole,
+    ItemInfoWithType,
+    ItemInfo,
+} from "./response";
 
 export interface Serie {
     id: number;
@@ -12,13 +19,13 @@ export interface Serie {
     type: string;
     modified: string;
     thumbnail: ItemThumbnail;
-    creators: Collection<ItemInfoWithRole>
-    characters: Collection<ItemInfo>
-    stories: Collection<ItemInfoWithType>
-    comics: Collection<ItemInfo>
-    events: Collection<ItemInfo>
-    next: ItemInfo
-    previous: ItemInfo
+    creators: Collection<ItemInfoWithRole>;
+    characters: Collection<ItemInfo>;
+    stories: Collection<ItemInfoWithType>;
+    comics: Collection<ItemInfo>;
+    events: Collection<ItemInfo>;
+    next: ItemInfo;
+    previous: ItemInfo;
 }
 
 export interface Storie {
@@ -29,11 +36,11 @@ export interface Storie {
     type: string;
     modified: string;
     thumbnail: ItemThumbnail;
-    creators: Collection<ItemInfoWithRole>
-    characters: Collection<ItemInfo>
-    series: Collection<ItemInfo>
-    comics: Collection<ItemInfo>
-    events: Collection<ItemInfo>
+    creators: Collection<ItemInfoWithRole>;
+    characters: Collection<ItemInfo>;
+    series: Collection<ItemInfo>;
+    comics: Collection<ItemInfo>;
+    events: Collection<ItemInfo>;
 }
 
 export interface Event {
@@ -46,13 +53,11 @@ export interface Event {
     start: string;
     end: string;
     thumbnail: ItemThumbnail;
-    creators: Collection<ItemInfoWithRole>
-    characters: Collection<ItemInfo>
-    stories: Collection<ItemInfoWithType>
-    comics: Collection<ItemInfo>
-    series: Collection<ItemInfo>
-    next: ItemInfo
-    previous: ItemInfo
-
+    creators: Collection<ItemInfoWithRole>;
+    characters: Collection<ItemInfo>;
+    stories: Collection<ItemInfoWithType>;
+    comics: Collection<ItemInfo>;
+    series: Collection<ItemInfo>;
+    next: ItemInfo;
+    previous: ItemInfo;
 }
-
