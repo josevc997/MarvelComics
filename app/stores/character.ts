@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import CharacterService from "~/services/Character.service";
+import CharacterService from '~/services/Character.service'
 
 export const useCharacterStore = defineStore("character", {
     state: () => ({

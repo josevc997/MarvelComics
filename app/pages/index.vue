@@ -16,6 +16,7 @@ const name = computed(() => {
 });
 
 const handleSearch = async () => {
+    console.log("handleSearch called with searchText:", searchText.value);
     characterStore.fetchCharacterList(
         Number(route.query.offset),
         searchText.value

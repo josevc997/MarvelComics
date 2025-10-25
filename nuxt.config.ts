@@ -1,24 +1,23 @@
+import tailwindcss from "@tailwindcss/vite";
 const path = require("path");
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     css: ["~/assets/css/main.css"],
-    postcss: {
-        plugins: {
-            tailwindcss: {},
-            autoprefixer: {},
-        },
-    },
     modules: [
-        "nuxt-icon",
-        "nuxt-headlessui",
-        "@nuxt/content",
-        "@nuxt/image-edge",
-        "@nuxtjs/i18n",
-        "@sidebase/nuxt-auth",
-        "@pinia/nuxt",
-        "@nuxt/devtools",
-        "@nuxt/image",
+      "nuxt-headlessui",
+      "@nuxt/content",
+      "@nuxtjs/i18n",
+      "@sidebase/nuxt-auth",
+      "@pinia/nuxt",
+      "@nuxt/devtools",
+      "@nuxt/icon",
+      "@nuxt/image",
     ],
+    vite: {
+        plugins: [
+        tailwindcss(),
+        ],
+    },
     // Optionally change the default prefix.
     headlessui: {
         prefix: "",
@@ -64,10 +63,6 @@ export default defineNuxtConfig({
         dirs: ["./stores"],
     },
     pinia: {
-        autoImports: [
-            // automatically imports `defineStore`
-            "defineStore", // import { defineStore } from 'pinia'
-            ["defineStore", "definePiniaStore"], // import { defineStore as definePiniaStore } from 'pinia'
-        ],
+        storesDirs: ['./stores/**',],
     },
 });
