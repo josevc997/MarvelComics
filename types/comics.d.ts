@@ -59,7 +59,7 @@ interface EventsInfo {
   returned: number;
 }
 
-export interface Comic {
+interface Comic {
   id: number;
   digitalId: number;
   title: string;
@@ -91,7 +91,7 @@ export interface Comic {
   events: EventsInfo;
 }
 
-export interface ComicListResponse {
+interface ComicListResponse {
   offset: number;
   limit: number;
   total: number;

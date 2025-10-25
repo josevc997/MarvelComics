@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Storie } from "~/types/series";
 
 defineProps<{
     loading: Boolean;

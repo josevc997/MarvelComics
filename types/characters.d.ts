@@ -45,7 +45,7 @@ interface CharacterUrls {
   url: string;
 }
 
-export interface Character {
+interface Character {
   id: number;
   name: string;
   description: string;
@@ -59,7 +59,7 @@ export interface Character {
   urls: CharacterUrls[];
 }
 
-export interface characterListResponse {
+interface characterListResponse {
   offset: number;
   limit: number;
   total: number;

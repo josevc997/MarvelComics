@@ -1,8 +1,4 @@
 import { defineStore } from "pinia";
-import type { CustomResponse, CustomData } from "~/types/response";
-import type { Character, characterListResponse } from "~/types/characters";
-import type { Comic, ComicListResponse } from "~/types/comics";
-import type { Serie, Storie, Event } from "~/types/series";
 import ComicService from "~/services/Comic.service";
 
 export const useComicStore = defineStore("comic", {

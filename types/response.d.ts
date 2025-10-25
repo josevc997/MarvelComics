@@ -1,4 +1,4 @@
-export interface CustomResponse<T> {
+interface CustomResponse<T> {
   attributionHTML: string;
   attributionText: string;
   code: number;
@@ -7,7 +7,7 @@ export interface CustomResponse<T> {
   status: string;
 }
 
-export interface CustomData<T> {
+interface CustomData<T> {
   offset: number;
   limit: number;
   total: number;
@@ -15,40 +15,40 @@ export interface CustomData<T> {
   results: T[];
 }
 
-export interface ItemInfo {
+interface ItemInfo {
   resourceURI: string;
   name: string;
 }
 
-export interface ItemInfoWithType extends ItemInfo {
+interface ItemInfoWithType extends ItemInfo {
   type: string;
 }
 
-export interface ItemInfoWithRole extends ItemInfo {
+interface ItemInfoWithRole extends ItemInfo {
   role: string;
 }
 
-export interface ItemUrl {
+interface ItemUrl {
   type: string;
   url: string;
 }
 
-export interface ItemDate {
+interface ItemDate {
   type: string;
   date: string;
 }
 
-export interface ItemPrice {
+interface ItemPrice {
   type: string;
   price: number;
 }
 
-export interface ItemThumbnail {
+interface ItemThumbnail {
   path: string;
   extension: string;
 }
 
-export interface Collection<T> {
+interface Collection<T> {
   available: number;
   returned: number;
   collectionURI: string;

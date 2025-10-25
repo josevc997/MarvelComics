@@ -1,13 +1,4 @@
-import type {
-    ItemUrl,
-    ItemThumbnail,
-    Collection,
-    ItemInfoWithRole,
-    ItemInfoWithType,
-    ItemInfo,
-} from "./response";
-
-export interface Serie {
+interface Serie {
     id: number;
     title: string;
     description: string;
@@ -28,7 +19,7 @@ export interface Serie {
     previous: ItemInfo;
 }
 
-export interface Storie {
+interface Storie {
     id: number;
     title: string;
     description: string;
@@ -43,7 +34,7 @@ export interface Storie {
     events: Collection<ItemInfo>;
 }
 
-export interface Event {
+interface Event {
     id: number;
     title: string;
     description: string;

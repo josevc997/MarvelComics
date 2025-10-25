@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Comic } from "~/types/comics";
 defineProps<{
     comic: Comic;
 }>();
