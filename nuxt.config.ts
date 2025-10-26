@@ -18,6 +18,18 @@ export default defineNuxtConfig({
         tailwindcss(),
         ],
     },
+    runtimeConfig: {
+        apikey: '',
+        ts: '',
+        hash: '',
+        apiurl: '',
+        public: {
+            apikey: '',
+            ts: '',
+            hash: '',
+            apiurl: '',
+        }
+    },
     // Optionally change the default prefix.
     headlessui: {
         prefix: "",
